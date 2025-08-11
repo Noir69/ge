@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Laravel</title>
-{{-- Just a copy of the welcome --}}
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
@@ -21,6 +21,7 @@
             </style>
         @endif
     </head>
+    {{-- I got stumped here as I couldn't make tailwind working as intended --}}
     <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
         <header class="w-full lg:max-w-4xl max-w-[335px] text-sm mb-6 not-has-[nav]:hidden">
           
@@ -41,6 +42,8 @@
             <main>
                 <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
                        
+        {{-- I wanted it this to be a selection that onClick would return a query using the selected
+             users id. But I wasn't able to figure out how to do it in vanilla js in time --}}
                     <label for="fruit">Choose a User:</label>
                     <select name="userDropDown" id="userDropDown">
                         @if (count($us) == 0)
@@ -51,7 +54,7 @@
                             <option value={{$userz->id}}>{{$userz->name}}</option>
                         @endforeach
                     </select><button onclick="window.location='{{route('view.something', 'USER_ID')}}'.replace('USER_ID', document.getElementById('userDropDown').value)">Choose</button>
-                                
+                            
                         @endif
                 </div>
 
@@ -112,11 +115,11 @@
                                 @endif
                             </tbody>
                         </table>
-                        {{-- for the pagination --}}
-     {{ $pa->links() }}
-                </div>
+                         {{-- for the pagination --}}
+                        {{ $pa->links() }}
+                    </div>
       
-            </div>
+                </div>
 
 
 
@@ -129,6 +132,7 @@
     </body>
     
 </html>
+{{-- An attempt to use JS --}}
 <script>
 $(document).ready(function () {
     $("#userDropDown").on('change', function () {

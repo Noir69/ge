@@ -36,6 +36,9 @@ class Reservations extends Command
             //Cancel the reservation
             $pay->status = Status::FAILED->value;
             $pay->save();
+            $reservation = $pay->paymentsReserve;
+            $reservation->canceled = true;
+            $reservation->save();
         }
     }
 }
